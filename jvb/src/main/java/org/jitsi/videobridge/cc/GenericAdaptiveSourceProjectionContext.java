@@ -113,7 +113,7 @@ class GenericAdaptiveSourceProjectionContext
             @NotNull RtpState rtpState,
             @NotNull Logger parentLogger)
     {
-        System.out.println("35");
+        System.out.println("9");
 
         this.payloadType = payloadType;
         this.ssrc = rtpState.ssrc;
@@ -141,7 +141,6 @@ class GenericAdaptiveSourceProjectionContext
     public synchronized boolean
     accept(@NotNull PacketInfo packetInfo, int incomingIndex, int targetIndex)
     {
-        System.out.println("36");
 
         VideoRtpPacket rtpPacket = packetInfo.packetAs();
         if (targetIndex == RtpLayerDesc.SUSPENDED_INDEX)
@@ -245,7 +244,6 @@ class GenericAdaptiveSourceProjectionContext
      */
     private synchronized void maybeInitializeTimestampDelta(long sourceTimestamp)
     {
-        System.out.println("37");
 
         if (timestampDeltaInitialized)
         {
@@ -273,7 +271,6 @@ class GenericAdaptiveSourceProjectionContext
     public boolean needsKeyframe()
     {
 
-        System.out.println("38");
 
         return needsKeyframe;
     }
@@ -289,7 +286,6 @@ class GenericAdaptiveSourceProjectionContext
     public void rewriteRtp(
         @NotNull PacketInfo packetInfo)
     {
-        System.out.println("39");
 
         VideoRtpPacket rtpPacket = packetInfo.packetAs();
         int sourceSequenceNumber = rtpPacket.getSequenceNumber();
@@ -334,7 +330,6 @@ class GenericAdaptiveSourceProjectionContext
     @Override
     public RtpState getRtpState()
     {
-        System.out.println("40");
 
         return new RtpState(
                 ssrc, maxDestinationSequenceNumber, maxDestinationTimestamp);
@@ -354,7 +349,6 @@ class GenericAdaptiveSourceProjectionContext
     @SuppressWarnings("unchecked")
     public JSONObject getDebugState()
     {
-        System.out.println("41");
 
         JSONObject debugState = new JSONObject();
         debugState.put(

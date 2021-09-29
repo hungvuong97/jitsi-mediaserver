@@ -66,8 +66,7 @@ class BitrateControllerPacketHandler
             DiagnosticContext diagnosticContext,
             EventEmitter<BitrateController.EventHandler> eventEmitter)
     {
-        System.out.println("16");
-
+        System.out.println("2");
         this.clock = clock;
         this.logger = parentLogger.createChildLogger(BitrateControllerPacketHandler.class.getName());
         this.diagnosticContext = diagnosticContext;
@@ -82,7 +81,6 @@ class BitrateControllerPacketHandler
      */
     boolean transformRtp(@NotNull PacketInfo packetInfo)
     {
-        System.out.println("17");
 
         VideoRtpPacket videoPacket = (VideoRtpPacket)packetInfo.getPacket();
         if (firstMediaMs == -1)
@@ -127,7 +125,6 @@ class BitrateControllerPacketHandler
      */
     boolean accept(@NotNull PacketInfo packetInfo)
     {
-        System.out.println("18");
 
         VideoRtpPacket videoRtpPacket = packetInfo.packetAs();
         long ssrc = videoRtpPacket.getSsrc();
@@ -152,7 +149,6 @@ class BitrateControllerPacketHandler
      */
     boolean accept(@NotNull RtcpSrPacket rtcpSrPacket)
     {
-        System.out.println("19");
 
         long ssrc = rtcpSrPacket.getSenderSsrc();
 
@@ -171,7 +167,6 @@ class BitrateControllerPacketHandler
 
     boolean transformRtcp(RtcpSrPacket rtcpSrPacket)
     {
-        System.out.println("20");
 
         long ssrc = rtcpSrPacket.getSenderSsrc();
 
@@ -186,7 +181,6 @@ class BitrateControllerPacketHandler
      */
     private AdaptiveSourceProjection lookupOrCreateAdaptiveSourceProjection(SingleAllocation singleAllocation)
     {
-        System.out.println("21");
 
         MediaSourceDesc source = singleAllocation.getMediaSource();
         String endpointID = singleAllocation.getEndpointId();
@@ -246,7 +240,7 @@ class BitrateControllerPacketHandler
 
     long timeSinceFirstMedia()
     {
-        System.out.println("22");
+
 
         if (firstMediaMs == -1)
         {
@@ -263,7 +257,6 @@ class BitrateControllerPacketHandler
     void addPayloadType(PayloadType payloadType)
     {
 
-        System.out.println("23");
 
         payloadTypes.put(payloadType.getPt(), payloadType);
     }
@@ -271,7 +264,6 @@ class BitrateControllerPacketHandler
     @SuppressWarnings("unchecked")
     JSONObject getDebugState()
     {
-        System.out.println("24");
 
         JSONObject debugState = new JSONObject();
         debugState.put("numDroppedPacketsUnknownSsrc", numDroppedPacketsUnknownSsrc.intValue());
@@ -291,7 +283,7 @@ class BitrateControllerPacketHandler
      */
     void allocationChanged(@NotNull BandwidthAllocation allocation)
     {
-        System.out.println("25");
+
 
         if (allocation.getAllocations().isEmpty())
         {

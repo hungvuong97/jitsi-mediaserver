@@ -73,6 +73,7 @@ public class SctpManager {
      */
     public SctpManager(SctpDataSender dataSender, Logger parentLogger)
     {
+        System.out.println("13");
         if (!config.enabled())
         {
             throw new IllegalStateException("SCTP is disabled in configuration");

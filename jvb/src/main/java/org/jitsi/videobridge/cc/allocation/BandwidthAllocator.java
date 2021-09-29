@@ -50,9 +50,9 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
      * @param currentBwe the current bandwidth estimation (in bps).
      * @return true if the bandwidth has changed above the configured threshold, * false otherwise.
      */
+
     private static boolean bweChangeIsLargerThanThreshold(long previousBwe, long currentBwe)
     {
-        System.out.println("1");
         if (previousBwe == -1 || currentBwe == -1)
         {
             return true;
@@ -134,6 +134,8 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
             DiagnosticContext diagnosticContext,
             Clock clock)
     {
+        System.out.println("1");
+
         this.logger = parentLogger.createChildLogger(BandwidthAllocator.class.getName());
         this.clock = clock;
         this.trustBwe = trustBwe;
@@ -141,7 +143,7 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
 
         this.endpointsSupplier = endpointsSupplier;
         eventEmitter.addHandler(eventHandler);
-        System.out.println("2");
+
 
     }
 
@@ -160,7 +162,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
         debugState.put("allocation", allocation.getDebugState());
         debugState.put("allocationSettings", allocationSettings.toJson());
         debugState.put("effectiveConstraints", effectiveConstraints);
-        System.out.println("3");
 
         return debugState;
     }
@@ -169,7 +170,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
     BandwidthAllocation getAllocation()
     {
 
-        System.out.println("4");
 
         return allocation;
     }
@@ -180,7 +180,7 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
     private long getAvailableBandwidth()
     {
 
-        System.out.println("5");
+
 
         return trustBwe.get() ? bweBps : Long.MAX_VALUE;
     }
@@ -191,7 +191,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
      */
     void bandwidthChanged(long newBandwidthBps)
     {
-        System.out.println("6");
 
         if (!bweChangeIsLargerThanThreshold(bweBps, newBandwidthBps))
         {
@@ -220,7 +219,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
      */
     void update(AllocationSettings allocationSettings)
     {
-        System.out.println("7");
 
         this.allocationSettings = allocationSettings;
         update();
@@ -232,7 +230,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
     synchronized void update()
     {
         lastUpdateTime = clock.instant();
-        System.out.println("8");
 
         // Order the endpoints by selection, followed by speech activity.
         List<T> sortedEndpoints = prioritize(endpointsSupplier.get(), getSelectedEndpoints());
@@ -275,7 +272,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
     {
         // On-stage participants are considered selected (with higher prio).
         List<String> selectedEndpoints = new ArrayList<>(allocationSettings.getOnStageEndpoints());
-        System.out.println("9");
 
         allocationSettings.getSelectedEndpoints().forEach(selectedEndpoint ->
         {
@@ -295,7 +291,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
      */
     private synchronized @NotNull BandwidthAllocation allocate(List<T> conferenceEndpoints)
     {
-        System.out.println("10");
 
         List<SingleSourceAllocation> sourceBitrateAllocations = createAllocations(conferenceEndpoints);
 
@@ -365,7 +360,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
     public boolean isForwarding(String endpointId)
     {
 
-        System.out.println("12");
 
         return allocation.isForwarding(endpointId);
     }
@@ -375,7 +369,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
      */
     public boolean hasNonZeroEffectiveConstraints(String endpointId)
     {
-        System.out.println("13");
 
         VideoConstraints constraints = effectiveConstraints.get(endpointId);
         if (constraints == null)
@@ -388,7 +381,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
     private synchronized @NotNull List<SingleSourceAllocation> createAllocations(List<T> conferenceEndpoints)
     {
         // Init.
-        System.out.println("14");
 
         List<SingleSourceAllocation> sourceBitrateAllocations = new ArrayList<>(conferenceEndpoints.size());
 
@@ -423,7 +415,6 @@ public class BandwidthAllocator<T extends MediaSourceContainer>
      */
     void maybeUpdate()
     {
-        System.out.println("15");
 
         if (Duration.between(lastUpdateTime, clock.instant())
                 .compareTo(BitrateControllerConfig.maxTimeBetweenCalculations()) > 0)

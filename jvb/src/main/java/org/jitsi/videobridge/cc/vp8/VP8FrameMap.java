@@ -47,6 +47,7 @@ public class VP8FrameMap
     public VP8FrameMap(
         @NotNull Logger parentLogger)
     {
+        System.out.println("5");
         this.logger = parentLogger.createChildLogger(VP8FrameMap.class.getName());
     }
 

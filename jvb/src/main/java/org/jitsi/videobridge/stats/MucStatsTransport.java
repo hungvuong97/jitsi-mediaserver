@@ -39,6 +39,7 @@ public class MucStatsTransport
     public MucStatsTransport(XmppConnection xmppConnection)
     {
         this.xmppConnection = xmppConnection;
+        System.out.println("16");
     }
 
     /**

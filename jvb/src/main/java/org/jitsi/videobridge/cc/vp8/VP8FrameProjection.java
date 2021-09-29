@@ -96,9 +96,11 @@ public class VP8FrameProjection
         @NotNull DiagnosticContext diagnosticContext,
         long ssrc, int sequenceNumberDelta, long timestamp)
     {
+
         this(diagnosticContext, null /* vp8Frame */, ssrc, timestamp,
             sequenceNumberDelta, 0 /* extendedPictureId */,
             0 /* tl0PICIDX */, 0 /* createdMs */);
+        System.out.println("6");
     }
 
     /**

@@ -85,6 +85,7 @@ public class VP8AdaptiveSourceProjectionContext
             @NotNull RtpState rtpState,
             @NotNull Logger parentLogger)
     {
+        System.out.println("3");
         this.diagnosticContext = diagnosticContext;
         this.logger = parentLogger.createChildLogger(
             VP8AdaptiveSourceProjectionContext.class.getName());

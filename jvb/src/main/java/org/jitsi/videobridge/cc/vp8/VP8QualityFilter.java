@@ -85,6 +85,7 @@ class VP8QualityFilter
     public VP8QualityFilter(Logger parentLogger)
     {
         this.logger = parentLogger.createChildLogger(VP8QualityFilter.class.getName());
+        System.out.println("7");
     }
 
     /**

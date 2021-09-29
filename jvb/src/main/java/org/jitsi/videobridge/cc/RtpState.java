@@ -45,7 +45,7 @@ public class RtpState
      */
     public RtpState(long ssrc, int maxSequenceNumber, long maxTimestamp)
     {
-        System.out.println("42");
+        System.out.println("10");
 
         this.ssrc = ssrc;
         this.maxSequenceNumber = maxSequenceNumber;

@@ -55,8 +55,10 @@ class ColibriWebSocketServlet
         @NotNull String serverId,
         @NotNull Videobridge videobridge)
     {
+
         this.serverId = serverId;
         this.videobridge = videobridge;
+        System.out.println("19");
     }
 
     /**

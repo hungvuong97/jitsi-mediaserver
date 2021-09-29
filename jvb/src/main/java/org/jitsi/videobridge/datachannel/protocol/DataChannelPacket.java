@@ -38,7 +38,7 @@ public class DataChannelPacket extends Packet
         super(data, offset, length);
         this.sid = sid;
         this.ppid = ppid;
-        System.out.println("45");
+        System.out.println("11");
         System.out.println("DataChannelPacket++" + data);
     }
 
@@ -49,7 +49,6 @@ public class DataChannelPacket extends Packet
     @Override
     public Packet clone()
     {
-        System.out.println("46");
         return new DataChannelPacket(
                 getBuffer().clone(), getOffset(), getLength(), sid, ppid);
     }

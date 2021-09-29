@@ -117,7 +117,7 @@ public class AdaptiveSourceProjection
         Logger parentLogger
     )
     {
-        System.out.println("26");
+        System.out.println("8");
         targetSsrc = source.getPrimarySSRC();
         this.diagnosticContext = diagnosticContext;
         this.payloadTypes = payloadTypes;
@@ -134,7 +134,6 @@ public class AdaptiveSourceProjection
     public void setTargetIndex(int value)
     {
 
-        System.out.println("27");
         targetIndex = value;
     }
 
@@ -152,7 +151,6 @@ public class AdaptiveSourceProjection
      */
     public boolean accept(@NotNull PacketInfo packetInfo)
     {
-        System.out.println("28");
         VideoRtpPacket videoRtpPacket = packetInfo.packetAs();
         AdaptiveSourceProjectionContext contextCopy = getContext(videoRtpPacket);
         if (contextCopy == null)
@@ -208,7 +206,6 @@ public class AdaptiveSourceProjection
      */
     private AdaptiveSourceProjectionContext getContext(@NotNull VideoRtpPacket rtpPacket)
     {
-        System.out.println("29");
         PayloadType payloadTypeObject;
         int payloadType = rtpPacket.getPayloadType();
 
@@ -320,7 +317,6 @@ public class AdaptiveSourceProjection
      */
     private @NotNull RtpState getRtpState()
     {
-        System.out.println("30");
         if (context == null)
         {
             // TODO If '1' are the starting seq number and timestamp, should
@@ -344,7 +340,7 @@ public class AdaptiveSourceProjection
    public void rewriteRtp(@NotNull PacketInfo packetInfo)
         throws RewriteException
     {
-        System.out.println("31");
+
         AdaptiveSourceProjectionContext contextCopy = context;
         if (contextCopy != null)
         {
@@ -360,7 +356,6 @@ public class AdaptiveSourceProjection
      */
     public boolean rewriteRtcp(@NotNull RtcpSrPacket rtcpSrPacket)
     {
-        System.out.println("32");
 
         AdaptiveSourceProjectionContext contextCopy = context;
         if (contextCopy == null)
@@ -377,7 +372,6 @@ public class AdaptiveSourceProjection
     public long getTargetSsrc()
     {
 
-        System.out.println("33");
 
         return targetSsrc;
     }
@@ -389,7 +383,6 @@ public class AdaptiveSourceProjection
     @SuppressWarnings("unchecked")
     public JSONObject getDebugState()
     {
-        System.out.println("34");
 
         JSONObject debugState = new JSONObject();
 
